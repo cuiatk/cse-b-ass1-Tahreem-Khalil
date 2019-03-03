@@ -12,11 +12,12 @@ public class RulesOf6005 {
     /**
 	// change 1 inserted from lab 6
 	 * change 2 inserted form lab 6
+	 * 
      * Judge whether a given piece of code may be used in an assignment (problem
      * set or team project) or not, according to the 6.005 collaboration policy.
      * 
      * @param writtenByYourself true if the code in question was written by
-     *        yourself or, in the case of a team project, your teammates,
+     *        yourself or, in the case of a team project, your team mates,
      *        otherwise false.
      * @param availableToOthers if not writtenByYourself, whether or not the
      *        code in question is available to all other students in the class.
@@ -37,11 +38,23 @@ public class RulesOf6005 {
     public static boolean mayUseCodeInAssignment(boolean writtenByYourself,
             boolean availableToOthers, boolean writtenAsCourseWork,
             boolean citingYourSource, boolean implementationRequired) {
+    	
         
+    	boolean isTheCodeAllowedToUse;
+    	
+		if(writtenByYourself==true && availableToOthers == false && writtenAsCourseWork == true && citingYourSource == true && 
+    		implementationRequired == true)
+    	{
+    	    return isTheCodeAllowedToUse=true;
+    	}
+    	
+    	else
+    	{
+    			return isTheCodeAllowedToUse=false;
+    	}
         // TODO: Fill in this method, then remove the exception
-    	return true;
         
-//        throw new RuntimeException("implement me!");
+    	// throw new RuntimeException("implement me!");
     }
     
     /**
