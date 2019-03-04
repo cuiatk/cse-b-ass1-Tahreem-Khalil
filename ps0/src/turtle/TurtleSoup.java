@@ -15,7 +15,17 @@ public class TurtleSoup {
      * @param sideLength length of each side
      */
     public static void drawSquare(Turtle turtle, int sideLength) {
-        throw new RuntimeException("implement me!");
+    	
+    	turtle.color(PenColor.CYAN);
+    	int i=0;
+    	while (i !=4) {
+    		turtle.turn(90.0);
+    		turtle.forward(sideLength);
+			
+			i++;
+		}
+ 	
+        //throw new RuntimeException("implement me!");
     }
 
     /**
@@ -55,6 +65,9 @@ public class TurtleSoup {
      * @param sideLength length of each side
      */
     public static void drawRegularPolygon(Turtle turtle, int sides, int sideLength) {
+    	
+    	
+    	
         throw new RuntimeException("implement me!");
     }
 
@@ -122,7 +135,7 @@ public class TurtleSoup {
     public static void main(String args[]) {
         DrawableTurtle turtle = new DrawableTurtle();
 
-        drawSquare(turtle, 40);
+        drawSquare(turtle, 100);
 
         // draw the window
         turtle.draw();
