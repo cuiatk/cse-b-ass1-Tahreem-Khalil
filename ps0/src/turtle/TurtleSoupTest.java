@@ -28,6 +28,8 @@ public class TurtleSoupTest {
         assertEquals(60.0, TurtleSoup.calculateRegularPolygonAngle(3), 0.001);
         assertEquals(128.57, TurtleSoup.calculateRegularPolygonAngle(7), 0.01);
         assertEquals(108.0, TurtleSoup.calculateRegularPolygonAngle(5), 0.001);
+        assertEquals(135.0, TurtleSoup.calculateRegularPolygonAngle(8), 0.001);
+        assertEquals(120.0, TurtleSoup.calculateRegularPolygonAngle(6), 0.001);
     }
 
     /**
@@ -38,6 +40,7 @@ public class TurtleSoupTest {
         assertEquals(3, TurtleSoup.calculatePolygonSidesFromAngle(60.0));
         assertEquals(7, TurtleSoup.calculatePolygonSidesFromAngle(128.57));
         assertEquals(5, TurtleSoup.calculatePolygonSidesFromAngle(108.0));
+        assertEquals(6, TurtleSoup.calculatePolygonSidesFromAngle(120.0));
 
     }
 

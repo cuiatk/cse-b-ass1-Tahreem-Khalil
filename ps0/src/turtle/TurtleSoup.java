@@ -16,12 +16,11 @@ public class TurtleSoup {
      */
     public static void drawSquare(Turtle turtle, int sideLength) {
     	
-    	turtle.color(PenColor.CYAN);
+    	turtle.color(PenColor.BLUE);
     	int i=0;
-    	while (i !=4) {
-    		turtle.turn(90.0);
+    	while (i !=4) {    		
     		turtle.forward(sideLength);
-			
+    		turtle.turn(90.0);
 			i++;
 		}
  	
@@ -38,7 +37,22 @@ public class TurtleSoup {
      * @return angle in degrees, where 0 <= angle < 360
      */
     public static double calculateRegularPolygonAngle(int sides) {
-        throw new RuntimeException("implement me!");
+    	double exteriorAngle;
+    	double interiorAngle=0.0;
+    	interiorAngle=(sides-2)*180;
+    	interiorAngle=interiorAngle/sides;
+    	exteriorAngle=180-interiorAngle;
+    	if(interiorAngle>=0 && interiorAngle<360)
+    	{
+    		return interiorAngle ;
+    	}
+    	else
+    	{
+    		System.out.println("angle is less than 360 enter sides of a regular polygon");
+    	   return -1;
+    	}
+    	
+        //throw new RuntimeException("implement me!");
     }
 
     /**
@@ -52,7 +66,21 @@ public class TurtleSoup {
      * @return the integer number of sides
      */
     public static int calculatePolygonSidesFromAngle(double angle) {
-        throw new RuntimeException("implement me!");
+    	
+    	double polygonSidesFronAngle=0;
+    	if(angle>0 && angle<180)
+    	{
+    		polygonSidesFronAngle= (360/(180-angle));
+    		polygonSidesFronAngle= Math.round(polygonSidesFronAngle);
+    	}
+    	else
+    	{
+    		System.out.println("enter angle correctly");
+    	}
+    	
+    	return (int) polygonSidesFronAngle;
+    	
+       // throw new RuntimeException("implement me!");
     }
 
     /**
@@ -65,10 +93,23 @@ public class TurtleSoup {
      * @param sideLength length of each side
      */
     public static void drawRegularPolygon(Turtle turtle, int sides, int sideLength) {
+    	int i=0;
+    	double exteriorAngle;
+    	double interiorAngle=0.0;
+    	interiorAngle=(sides-2)*180;
+    	interiorAngle=interiorAngle/sides;
+    	exteriorAngle=180-interiorAngle;
+    	turtle.color(PenColor.RED);
+    	
+    	for(i=0;i!=sides;i++)
+    	{	
+    		turtle.forward(sideLength); 
+    		turtle.turn(exteriorAngle);
+    
+    	}
     	
     	
-    	
-        throw new RuntimeException("implement me!");
+        //throw new RuntimeException("implement me!");
     }
 
     /**
@@ -133,12 +174,17 @@ public class TurtleSoup {
      * @param args unused
      */
     public static void main(String args[]) {
+    	
         DrawableTurtle turtle = new DrawableTurtle();
-
-        drawSquare(turtle, 100);
-
+   
+        //drawSquare(turtle, 100);
+        drawRegularPolygon(turtle, 6, 80);
+        
+       //System.out.println( calculateRegularPolygonAngle(6));
+       //System.out.println(calculatePolygonSidesFromAngle(120.0));
         // draw the window
         turtle.draw();
+       
     }
 
 }
