@@ -4,6 +4,7 @@
 package turtle;
 
 import java.util.List;
+import java.awt.Color;
 import java.util.ArrayList;
 
 public class TurtleSoup {
@@ -16,11 +17,17 @@ public class TurtleSoup {
      */
     public static void drawSquare(Turtle turtle, int sideLength) {
     	
-    	turtle.color(PenColor.BLUE);
+    	
+    	PenColor[] arr= {PenColor.CYAN,PenColor.GREEN,PenColor.ORANGE,PenColor.MAGENTA,PenColor.YELLOW,PenColor.BLUE,
+    			PenColor.BLACK,PenColor.GRAY,PenColor.PINK,PenColor.RED};
+    	turtle.color(arr[0]);
     	int i=0;
     	while (i !=4) {    		
+    		
     		turtle.forward(sideLength);
+    		
     		turtle.turn(90.0);
+    		turtle.color(arr[i]);
 			i++;
 		}
  	
@@ -42,15 +49,10 @@ public class TurtleSoup {
     	interiorAngle=(sides-2)*180;
     	interiorAngle=interiorAngle/sides;
     	exteriorAngle=180-interiorAngle;
-    	if(interiorAngle>=0 && interiorAngle<360)
-    	{
+    	
     		return interiorAngle ;
-    	}
-    	else
-    	{
-    		System.out.println("angle is less than 360 enter sides of a regular polygon");
-    	   return -1;
-    	}
+    	
+    	
     	
         //throw new RuntimeException("implement me!");
     }
@@ -96,12 +98,19 @@ public class TurtleSoup {
     	int i=0;
     	double exteriorAngle;
     	exteriorAngle=180-calculateRegularPolygonAngle(sides);
-    	turtle.color(PenColor.RED);
-    	
+    	PenColor[] arr= {PenColor.CYAN,PenColor.GREEN,PenColor.ORANGE,PenColor.MAGENTA,PenColor.YELLOW,PenColor.BLUE,
+    			PenColor.BLACK,PenColor.GRAY,PenColor.PINK,PenColor.RED,};
+    	turtle.color(arr[0]);
     	for(i=0;i!=sides;i++)
     	{	
-    		turtle.forward(sideLength); 
+    		if(i<10)
+    		{
+    			turtle.forward(sideLength); 
     		turtle.turn(exteriorAngle);
+    		
+    		turtle.color(arr[i]);
+    		}
+    		
     
     	}
     	
@@ -182,7 +191,15 @@ public class TurtleSoup {
      * @param turtle the turtle context
      */
     public static void drawPersonalArt(Turtle turtle) {
-        throw new RuntimeException("implement me!");
+    	   
+    	for(int i = 0; i < 10; i++){ // i < 15 to limit size of shapes
+            drawRegularPolygon(turtle, i, i);
+            drawRegularPolygon(turtle, i*5, i+5);
+            drawSquare(turtle, i*15);
+            drawRegularPolygon(turtle, i, i*5);   
+            drawSquare(turtle, i*10);
+    	} 
+        //throw new RuntimeException("implement me!");
     }
 
     /**
@@ -213,7 +230,8 @@ public class TurtleSoup {
        // System.out.println(calculateHeadingToPoint(0.0, 0, 0, 1, 0));
         System.out.println(calculateHeadings(xpoints, ypoints));
         // draw the window
-       // turtle.draw();
+      turtle.draw();
+        drawPersonalArt(turtle);
        
     }
 
