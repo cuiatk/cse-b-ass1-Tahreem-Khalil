@@ -95,10 +95,7 @@ public class TurtleSoup {
     public static void drawRegularPolygon(Turtle turtle, int sides, int sideLength) {
     	int i=0;
     	double exteriorAngle;
-    	double interiorAngle=0.0;
-    	interiorAngle=(sides-2)*180;
-    	interiorAngle=interiorAngle/sides;
-    	exteriorAngle=180-interiorAngle;
+    	exteriorAngle=180-calculateRegularPolygonAngle(sides);
     	turtle.color(PenColor.RED);
     	
     	for(i=0;i!=sides;i++)
@@ -133,7 +130,18 @@ public class TurtleSoup {
      */
     public static double calculateHeadingToPoint(double currentHeading, int currentX, int currentY,
                                                  int targetX, int targetY) {
-        throw new RuntimeException("implement me!");
+    	  int diffX = targetX - currentX;
+          int diffY = targetY - currentY;
+          double clockwiseFromNorth = Math.toDegrees(Math.atan2(diffX, diffY));
+          double angle = clockwiseFromNorth - currentHeading;
+
+          if(angle < 0)
+          
+        	   angle += 360; 
+          
+          return angle;
+          
+       // throw new RuntimeException("implement me!");
     }
 
     /**
@@ -151,7 +159,18 @@ public class TurtleSoup {
      *         otherwise of size (# of points) - 1
      */
     public static List<Double> calculateHeadings(List<Integer> xCoords, List<Integer> yCoords) {
-        throw new RuntimeException("implement me!");
+    	
+    	List<Double> headingChanges = new ArrayList<Double>();
+        int numberOfCoordinates = xCoords.size();
+        double currentHeading = 0;
+        for(int i = 1; i < numberOfCoordinates; i++){
+            double adjustment = calculateHeadingToPoint(currentHeading, xCoords.get(i-1), yCoords.get(i-1),
+            		xCoords.get(i), xCoords.get(i));
+            currentHeading += adjustment;
+            headingChanges.add(adjustment);
+        }
+        return headingChanges;
+        //throw new RuntimeException("implement me!");
     }
 
     /**
@@ -176,14 +195,25 @@ public class TurtleSoup {
     public static void main(String args[]) {
     	
         DrawableTurtle turtle = new DrawableTurtle();
+        List<Integer> xpoints = new ArrayList<>();
+        List<Integer> ypoints = new ArrayList<>();
+        
+        xpoints.add(0);
+        xpoints.add(1);
+        xpoints.add(1);
+        ypoints.add(0);
+        ypoints.add(1);
+        ypoints.add(2);
    
         //drawSquare(turtle, 100);
-        drawRegularPolygon(turtle, 6, 80);
+        //drawRegularPolygon(turtle, 6, 80);
         
        //System.out.println( calculateRegularPolygonAngle(6));
        //System.out.println(calculatePolygonSidesFromAngle(120.0));
+       // System.out.println(calculateHeadingToPoint(0.0, 0, 0, 1, 0));
+        System.out.println(calculateHeadings(xpoints, ypoints));
         // draw the window
-        turtle.draw();
+       // turtle.draw();
        
     }
 
